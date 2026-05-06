@@ -25,7 +25,7 @@ always @(posedge clk or posedge rst)
 begin
     if(rst)
         count<=0;
-    else if(mode&&ce&&(cmd==4'd9||cmd==4'd10)&&inp_valid==2'b11)
+    else if(mode &&(cmd==4'd9||cmd==4'd10)&&inp_valid==2'b11)
     begin
         if(count==2)
             count<=0;
@@ -313,7 +313,10 @@ end
                         4'b?110:res<={opa[DATA_WIDTH-7:0],opa[DATA_WIDTH-1:DATA_WIDTH-6]};
                         4'b?111:res<={opa[0],opa[DATA_WIDTH-1:1]};
                         endcase
-                        err<=(|opb[DATA_WIDTH-1:4]);
+                        if(opb[DATA_WIDTH-1:4]==4'b1111||opb[4]||opb[5]||opb[6]||opb[7])
+                            err<=1'b1;
+                        else
+                            err<=1'b0;
                  end
                  else
                    begin err<=1'b1;res<=0; end
