@@ -279,16 +279,17 @@ end
             4'd12:begin 
                   if(inp_valid==2'b11)
                   begin
-                    casez(opb[3:0])
+                       casez(opb[3:0])
                         4'b?000:res<=opa;
-                        4'b?001:res<={opa[0],opa[DATA_WIDTH-1:1]};
-                        4'b?010:res<={opa[1:0],opa[DATA_WIDTH-1:2]};
-                        4'b?011:res<={opa[2:0],opa[DATA_WIDTH-1:3]};
-                        4'b?100:res<={opa[3:0],opa[DATA_WIDTH-1:4]};
-                        4'b?101:res<={opa[4:0],opa[DATA_WIDTH-1:5]};
-                        4'b?110:res<={opa[5:0],opa[DATA_WIDTH-1:6]};
-                        4'b?111:res<={opa[6:0],opa[DATA_WIDTH-1:DATA_WIDTH-7]};
+                        4'b?001:res<={opa[DATA_WIDTH-2:0],opa[DATA_WIDTH-1]};
+                        4'b?010:res<={opa[DATA_WIDTH-3:0],opa[DATA_WIDTH-1:DATA_WIDTH-2]};
+                        4'b?011:res<={opa[DATA_WIDTH-4:0],opa[DATA_WIDTH-1:DATA_WIDTH-3]};
+                        4'b?100:res<={opa[DATA_WIDTH-5:0],opa[DATA_WIDTH-1:DATA_WIDTH-4]};
+                        4'b?101:res<={opa[DATA_WIDTH-6:0],opa[DATA_WIDTH-1:DATA_WIDTH-5]};
+                        4'b?110:res<={opa[DATA_WIDTH-7:0],opa[DATA_WIDTH-1:DATA_WIDTH-6]};
+                        4'b?111:res<={opa[0],opa[DATA_WIDTH-1:1]};
                         endcase
+                   
                         if(opb[DATA_WIDTH-1:4]==4'b1111||opb[4]||opb[5]||opb[6]||opb[7])
                             err<=1'b1;
                         else
@@ -303,16 +304,17 @@ end
             4'd13:begin
                  if(inp_valid==2'b11)
                  begin
-                    casez(opb[3:0])
+                      casez(opb[3:0])
                         4'b?000:res<=opa;
-                        4'b?001:res<={opa[DATA_WIDTH-2:0],opa[DATA_WIDTH-1]};
-                        4'b?010:res<={opa[DATA_WIDTH-3:0],opa[DATA_WIDTH-1:DATA_WIDTH-2]};
-                        4'b?011:res<={opa[DATA_WIDTH-4:0],opa[DATA_WIDTH-1:DATA_WIDTH-3]};
-                        4'b?100:res<={opa[DATA_WIDTH-5:0],opa[DATA_WIDTH-1:DATA_WIDTH-4]};
-                        4'b?101:res<={opa[DATA_WIDTH-6:0],opa[DATA_WIDTH-1:DATA_WIDTH-5]};
-                        4'b?110:res<={opa[DATA_WIDTH-7:0],opa[DATA_WIDTH-1:DATA_WIDTH-6]};
-                        4'b?111:res<={opa[0],opa[DATA_WIDTH-1:1]};
+                        4'b?001:res<={opa[0],opa[DATA_WIDTH-1:1]};
+                        4'b?010:res<={opa[1:0],opa[DATA_WIDTH-1:2]};
+                        4'b?011:res<={opa[2:0],opa[DATA_WIDTH-1:3]};
+                        4'b?100:res<={opa[3:0],opa[DATA_WIDTH-1:4]};
+                        4'b?101:res<={opa[4:0],opa[DATA_WIDTH-1:5]};
+                        4'b?110:res<={opa[5:0],opa[DATA_WIDTH-1:6]};
+                        4'b?111:res<={opa[6:0],opa[DATA_WIDTH-1:DATA_WIDTH-7]};
                         endcase
+                   
                         if(opb[DATA_WIDTH-1:4]==4'b1111||opb[4]||opb[5]||opb[6]||opb[7])
                             err<=1'b1;
                         else
