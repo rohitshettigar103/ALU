@@ -71,7 +71,7 @@ end
                      end                     
             4'd1:if(inp_valid==2'b11) 
                      begin 
-                     {cout,res[DATA_WIDTH-1:0]}<=sub_res;
+                     {res[DATA_WIDTH-1:0]}<=sub_res;
                      begin
                         if(opb>opa)
                             oflow<=1;
@@ -94,7 +94,7 @@ end
                      end       
             4'd3:if(inp_valid==2'b11)
                      begin
-                     {cout,res[DATA_WIDTH-1:0]}<=opa-opb-cin;
+                     {res[DATA_WIDTH-1:0]}<=opa-opb-cin;
                      if((opb+cin)>opa)
                         oflow<=1;
                      else
