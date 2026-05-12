@@ -20,7 +20,7 @@ wire G,RG, RL,L, RE,E;
 
 alu_new #(.DATA_WIDTH(N)) dut (.clk(CLK), .rst(RST), .ce(CE), .opa(OPA), .opb(OPB), .cin(CIN), .inp_valid(INP_VALID), .mode(MODE), .cmd(CMD), .res(RES), .err(ERR), .cout(COUT), .oflow(OFLOW), .g(G), .l(L), .e(E));
 
-alu_comb_ref #(.DATA_WIDTH(N)) uut (.mode(MODE), .cin(CIN), .inp_valid(INP_VALID), .opa(OPA), .opb(OPB), .cmd(CMD), .res(RRES), .err(RERR), .cout(RCOUT), .oflow(ROFLOW), .g(RG), .l(RL), .e(RE));
+alu_ref #(.DATA_WIDTH(N)) uut (.mode(MODE), .cin(CIN), .inp_valid(INP_VALID), .opa(OPA), .opb(OPB), .cmd(CMD), .res(RRES), .err(RERR), .cout(RCOUT), .oflow(ROFLOW), .g(RG), .l(RL), .e(RE));
 
 task DRIVE_INPUT;
     input t_rst, t_ce;
