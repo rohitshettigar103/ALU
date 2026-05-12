@@ -19,18 +19,23 @@ wire OFLOW,ROFLOW;
 wire COUT,RCOUT;
 wire G,RG, RL,L, RE,E;
 
-
 alu_new #(.DATA_WIDTH(N)) dut (
-        .clk(CLK), .rst(RST), .ce(CE), .opa(OPA), .opb(OPB), .cin(CIN),
-        .inp_valid(INP_VALID), .mode(MODE), .cmd(CMD),
-        .res(RES), .err(ERR), .cout(COUT), .oflow(OFLOW), .g(G), .l(L), .e(E)
-    );
-
-ALU #(.N(N)) uut (
-        .CLK(CLK), .RST(RST), .CE(CE), .OPA(OPA), .OPB(OPB), .CIN(CIN),
-        .INP_VALID(INP_VALID), .MODE(MODE), .CMD(CMD),
-        .RES(RRES), .ERR(RERR), .COUT(RCOUT), .OFLOW(ROFLOW), .G(RG), .L(RL), .E(RE)
-    );
+    .clk(CLK), .rst(RST),.ce(CE),.opa(OPA),.opb(OPB),.cin(CIN),.inp_valid(INP_VALID),.mode(MODE),.cmd(CMD),.res(RES),.err(ERR),.cout(COUT),.oflow(OFLOW),.g(G),.l(L),.e(E));
+alu_ref #(.DATA_WIDTH(N)) uut (
+    .mode(MODE),
+    .cin(CIN),
+    .inp_valid(INP_VALID),
+    .opa(OPA),
+    .opb(OPB),
+    .cmd(CMD),
+    .res(RRES),
+    .oflow(ROFLOW),
+    .cout(RCOUT),
+    .g(RG),
+    .l(RL),
+    .e(RE),
+    .err(RERR)
+);
 
 task DRIVE_INPUT;
     input t_rst, t_ce;
